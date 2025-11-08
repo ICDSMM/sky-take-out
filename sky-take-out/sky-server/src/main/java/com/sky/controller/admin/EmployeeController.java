@@ -41,8 +41,6 @@ public class EmployeeController {
     private EmployeeService employeeService;
     @Autowired
     private JwtProperties jwtProperties;
-    @Autowired
-    private EmployeeMapper employeeMapper;
 
     /**
      * 登录
@@ -120,6 +118,20 @@ public class EmployeeController {
     @ApiOperation(value = "启用禁用员工账号")
     public Result startOrStop(@PathVariable Integer status,Long id){
         employeeService.startOrStop(status,id);
+        return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询员工")
+    public Result<Employee> getById(@PathVariable Long id){
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    @PutMapping
+    @ApiOperation("编辑员工信息")
+    public Result<EmployeeDTO> updateEmployee(@RequestBody EmployeeDTO employeeDTO){
+        employeeService.updateEmployee(employeeDTO);
         return Result.success();
     }
 }
