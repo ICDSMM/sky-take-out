@@ -15,6 +15,7 @@ import com.sky.utils.JwtUtil;
 import com.sky.vo.EmployeeLoginVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.models.media.XML;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,4 +110,16 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+    /**
+     * 启用禁用员工
+     */
+    // @PathVariable    绑定 URL 路径中的占位符（{}） /status/{status} → status=1
+    // @RequestParam    绑定 URL 查询参数（?key=value） ?id=100 → id=100
+    // @RequestBody     绑定请求体中的 JSON/XML 数据   请求体 {"name":"张三"}
+    @PostMapping("/status/{status}")
+    @ApiOperation(value = "启用禁用员工账号")
+    public Result startOrStop(@PathVariable Integer status,Long id){
+        employeeService.startOrStop(status,id);
+        return Result.success();
+    }
 }
