@@ -130,7 +130,7 @@ public class EmployeeController {
 
     @PutMapping
     @ApiOperation("编辑员工信息")
-    public Result<EmployeeDTO> updateEmployee(@RequestBody EmployeeDTO employeeDTO){
+    public Result updateEmployee(@RequestBody EmployeeDTO employeeDTO){
         employeeService.updateEmployee(employeeDTO);
         return Result.success();
     }
