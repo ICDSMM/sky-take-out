@@ -129,9 +129,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
         // 将 EmployeeDTO（数据传输对象）中的属性值复制到 Employee 实体中，实现 DTO 到实体对象的数据传递
         BeanUtils.copyProperties(employeeDTO,employee);
-        employee.setUpdateTime(LocalDateTime.now());
-        // 记录执行更新操作的用户 ID（通过 BaseContext 获取当前登录用户的 ID）
-        employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.updateEmployee(employee);
     }
 
