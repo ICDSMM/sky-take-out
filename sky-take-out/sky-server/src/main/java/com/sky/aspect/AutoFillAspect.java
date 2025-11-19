@@ -27,8 +27,7 @@ public class AutoFillAspect {
      * 对所有添加了@AutoFill注解的方法进行拦截
      */
     @Pointcut("execution(* com.sky.mapper.*.*(..)) && @annotation(com.sky.annotation.AutoFill)")    // 切点表达式
-    public void autoFillPointCut() {
-    }
+    public void autoFillPointCut() {}
 
     /**
      * 前置通知，在方法执行前自动填充实体类的创建时间和更新时间字段
