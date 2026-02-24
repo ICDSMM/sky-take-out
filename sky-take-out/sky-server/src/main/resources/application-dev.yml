@@ -16,3 +16,7 @@ sky:
     access-key-id: LTAI5tDCfE3mQAKZVZTSAdsJ
     access-key-secret: jcu2oNWYPIJoS81ZofrEsHlhCsXZy6
     bucket-name: hiccup
+
+  wechat:
+    appid: wx6e532b96e3a94fc6
+    secret: 82e2cf1a5dafda70a314832be3268de4
