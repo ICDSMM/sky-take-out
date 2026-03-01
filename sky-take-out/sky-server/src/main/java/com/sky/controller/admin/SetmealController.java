@@ -12,6 +12,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +26,8 @@ public class SetmealController {
 
     @Autowired
     private SetmealService setmealService;
+
+    // admin需要实时完整的数据，查询不需要缓存，有修改的时候需要把之前user端的缓存删掉
 
     /**
      * 根据id查询套餐
@@ -48,6 +52,8 @@ public class SetmealController {
      */
     @PostMapping
     @ApiOperation("新增套餐")
+    // #setmealDTO.categoryId精确删除
+    @CacheEvict(cacheNames = "setmealCache", key = "#setmealDTO.categoryId")
     public Result save(@RequestBody SetmealDTO setmealDTO){
         log.info("新增套餐内容：{}",setmealDTO);
         setmealService.save(setmealDTO);
@@ -61,6 +67,8 @@ public class SetmealController {
      */
     @DeleteMapping
     @ApiOperation("批量删除套餐")
+    // 传入ids集合无法精确删除，所以全部删除
+    @CacheEvict(cacheNames = "setmealCache", allEntries = true)
     public Result deleteById(List<Long> ids){
         log.info("删除套餐id：{}",ids);
         setmealService.deleteById(ids);
@@ -74,6 +82,7 @@ public class SetmealController {
      */
     @PostMapping("/status/{status}")
     @ApiOperation("套餐起售、停售")
+    @CacheEvict(cacheNames = "setmealCache", allEntries = true)
     public Result setStatus(@PathVariable Integer status, @RequestParam Long id){
         log.info("起售停售：{}，套餐id：{}",status,id);
         if (!status.equals(StatusConstant.DISABLE) && !status.equals(StatusConstant.ENABLE)) {
