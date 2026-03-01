@@ -1,2 +1,2 @@
-AccessKey ID,AccessKey Secret
-LTAI5tDCfE3mQAKZVZTSAdsJ,jcu2oNWYPIJoS81ZofrEsHlhCsXZy6
+AccessKeyId LTAI5tEJCbwbYVBPJrk4X7mU
+AccessKeySecret m5Fmg2Q4jIvRakp46tcPmXTVA3yypd

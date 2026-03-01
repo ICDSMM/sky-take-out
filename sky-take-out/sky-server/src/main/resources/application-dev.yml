@@ -13,8 +13,8 @@ sky:
 
   alioss:
     endpoint: oss-cn-beijing.aliyuncs.com
-    access-key-id: LTAI5tDCfE3mQAKZVZTSAdsJ
-    access-key-secret: jcu2oNWYPIJoS81ZofrEsHlhCsXZy6
+    access-key-id: LTAI5tEJCbwbYVBPJrk4X7mU
+    access-key-secret: m5Fmg2Q4jIvRakp46tcPmXTVA3yypd
     bucket-name: hiccup
 
   wechat:
