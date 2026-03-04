@@ -22,7 +22,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.sky.entity
   configuration:
-    #开启驼峰命名
+    #开启驼峰命名,将数据库中的下划线命名自动映射为 Java 实体类的驼峰属性
     map-underscore-to-camel-case: true
 
 logging:

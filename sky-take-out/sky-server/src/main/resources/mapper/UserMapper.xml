@@ -12,4 +12,9 @@
         select * from user where openid = #{openid}
     </select>
 
+    <!--    根据用户id查询用户信息-->
+    <select id="getById" resultType="com.sky.entity.User">
+        select * from user where id = #{userId}
+    </select>
+
 </mapper>

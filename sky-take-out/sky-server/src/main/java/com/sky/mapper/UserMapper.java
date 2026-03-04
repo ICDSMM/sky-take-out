@@ -10,4 +10,7 @@ public interface UserMapper {
 
     // 插入新用户信息
     void insert(User user);
+
+    // 根据用户id查询用户信息
+    User getById(Long userId);
 }
