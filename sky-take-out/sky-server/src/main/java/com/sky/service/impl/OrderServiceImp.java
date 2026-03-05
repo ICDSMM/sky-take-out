@@ -203,7 +203,72 @@ public class OrderServiceImp implements OrderService {
                 list.add(orderVO);
             }
         }
+        // total ：总记录数   records ：当前页的数据列表
         return new PageResult(page.getTotal(), list);
+    }
+
+    /**
+     * 查询订单详情
+     * @param id
+     * @return
+     */
+    @Override
+    public OrderVO showOrderDetail(Long id) {
+        Orders orders = orderMapper.getById(id);
+        Long orderId = orders.getId();
+        // 查询订单明细
+        List<OrderDetail> orderDetails = orderDetailMapper.getByOrderId(orderId);
+        OrderVO orderVO = new OrderVO();
+        BeanUtils.copyProperties(orders,orderVO);
+        orderVO.setOrderDetailList(orderDetails);
+        return orderVO;
+    }
+
+    /**
+     * 取消订单
+     * @param id
+     */
+    @Override
+    public void cancelOrders(Long id) {
+        Orders orders = orderMapper.getById(id);
+        orders.setStatus(Orders.CANCELLED);
+        orders.setCancelTime(LocalDateTime.now());
+        orderMapper.update(orders);
+    }
+
+    /**
+     * 再来一单
+     * @param id
+     */
+    @Override
+    @Transactional
+    public void repeatOrder(Long id) {
+
+        Orders orders = orderMapper.getById(id);
+        orders.setId(null);
+        orders.setOrderTime(LocalDateTime.now());
+        orders.setNumber(String.valueOf(System.currentTimeMillis()));
+        orders.setStatus(Orders.PENDING_PAYMENT);
+        orders.setPayStatus(Orders.UN_PAID);
+        orders.setCheckoutTime(null);
+        orders.setCancelTime(null);
+        orderMapper.insert(orders);
+        Long orderId = orders.getId();
+
+        List<OrderDetail> orderDetailList = orderDetailMapper.getByOrderId(id);
+        List<OrderDetail> newOrderDetailList = new ArrayList<>();
+        for (OrderDetail oldOrderDetail : orderDetailList){
+            OrderDetail newOrderDetail = new OrderDetail();
+            BeanUtils.copyProperties(oldOrderDetail, newOrderDetail);
+            newOrderDetail.setOrderId(orderId);
+            newOrderDetail.setId(null);
+            newOrderDetailList.add(newOrderDetail);
+        }
+        if(!newOrderDetailList.isEmpty()){
+            orderDetailMapper.insertBatch(newOrderDetailList);
+        }
+
+
     }
 
 

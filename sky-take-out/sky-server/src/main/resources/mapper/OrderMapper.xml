@@ -52,4 +52,8 @@
         order by order_time desc
     </select>
 
+    <select id="getById" resultType="com.sky.entity.Orders">
+        select * from orders where id = #{id}
+    </select>
+
 </mapper>

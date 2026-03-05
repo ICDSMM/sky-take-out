@@ -30,4 +30,12 @@ public interface OrderMapper {
      * @param orders
      */
     void update(Orders orders);
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    Orders getById(Long id);
+
 }

@@ -6,10 +6,12 @@ import com.sky.dto.OrdersSubmitDTO;
 import com.sky.result.PageResult;
 import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderSubmitVO;
+import com.sky.vo.OrderVO;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface OrderService {
+
 
     /**
      * 用户下单
@@ -40,4 +42,23 @@ public interface OrderService {
      * @return
      */
     PageResult pageQuery4User(int page, int pageSize, Integer status);
+
+    /**
+     * 查询订单详情
+     * @param id
+     * @return
+     */
+    OrderVO showOrderDetail(Long id);
+
+    /**
+     * 取消订单
+     * @param id
+     */
+    void cancelOrders(Long id);
+
+    /**
+     * 再来一单
+     * @param id
+     */
+    void repeatOrder(Long id);
 }
