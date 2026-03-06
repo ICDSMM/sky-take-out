@@ -5,6 +5,8 @@ import com.sky.dto.OrdersPageQueryDTO;
 import com.sky.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+
 @Mapper
 public interface OrderMapper {
     /**
@@ -38,4 +40,14 @@ public interface OrderMapper {
      */
     Orders getById(Long id);
 
+    /**
+     *
+     * @param status
+     * @return
+     */
+    Integer getByStatus(Integer status);
+
+    Integer countByMap(Map map);
+
+    Double sumByMap(Map map);
 }

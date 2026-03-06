@@ -1,20 +1,3 @@
 {
-  "java.compile.nullAnalysis.mode": "automatic",
-  "sqltools.connections": [
-    {
-        "mysqlOptions": {
-            "authProtocol": "default",
-            "enableSsl": "Disabled"
-        },
-        "ssh": "Disabled",
-        "previewLimit": 50,
-        "server": "localhost",
-        "port": 3306,
-        "driver": "MySQL",
-        "name": "@localhost",
-        "username": "root",
-        "password": "password",
-        "database": "sky_take_out"
-    }
-]
+  "java.compile.nullAnalysis.mode": "automatic"
 }

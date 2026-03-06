@@ -56,4 +56,14 @@
         select * from orders where id = #{id}
     </select>
 
+<!--    统计满足条件且 id 字段不为 null的行数-->
+    <select id="getByStatus" resultType="java.lang.Integer">
+        select count(id) from orders where status = #{status}
+    <!-- 根据动态条件统计订单数量 -->
+    </select>
+
+    <select id="countByMap" resultType="java.lang.Integer"></select>
+
+    <select id="sumByMap" resultType="java.lang.Double"></select>
+
 </mapper>
