@@ -61,6 +61,10 @@
         select count(id) from orders where status = #{status}
     <!-- 根据动态条件统计订单数量 -->
     </select>
+    <!-- 处理超时订单，查询状态为待支付且下单时间早于指定时间的订单 -->
+    <select id="getByStatusAndOrderTimeLT" resultType="com.sky.entity.Orders">
+        select * from orders where status = #{pendingPayment} and order_time &lt; #{time}
+    </select>
 
     <select id="countByMap" resultType="java.lang.Integer"></select>
 
