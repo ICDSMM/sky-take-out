@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class OrderServiceImp implements OrderService {
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMapper orderMapper;

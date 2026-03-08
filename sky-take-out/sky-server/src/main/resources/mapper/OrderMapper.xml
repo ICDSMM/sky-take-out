@@ -66,8 +66,22 @@
         select * from orders where status = #{pendingPayment} and order_time &lt; #{time}
     </select>
 
+    <select id="sumByMap" resultType="java.lang.Double">
+        select sum(amount) from orders
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="beginTime != null">
+                and order_time &gt; #{begin}
+            </if>
+            <if test="endTime != null">
+                and order_time &lt; #{end}
+            </if>
+        </where>
+    </select>
+
     <select id="countByMap" resultType="java.lang.Integer"></select>
 
-    <select id="sumByMap" resultType="java.lang.Double"></select>
 
 </mapper>
