@@ -13,14 +13,13 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Slf4j
-@Api(tags = "套餐相关接口")
-@RestController
+@Api(tags = "B端-套餐相关接口")
+@RestController("adminSetmealController")
 @RequestMapping("/admin/setmeal")
 public class SetmealController {
 

@@ -4,7 +4,6 @@ import com.sky.constant.StatusConstant;
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
-import com.sky.exception.BaseException;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.DishService;
@@ -19,10 +18,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Set;
 
-@RestController
+@RestController("adminDishController")
 @RequestMapping("/admin/dish")
 @Slf4j
-@Api(tags = "菜品相关接口")
+@Api(tags = "B端-菜品相关接口")
 public class DishController {
 
     @Autowired

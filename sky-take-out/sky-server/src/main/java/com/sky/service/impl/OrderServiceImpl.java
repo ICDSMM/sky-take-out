@@ -345,6 +345,7 @@ public class OrderServiceImpl implements OrderService {
 
         Page<Orders> page = orderMapper.pageQuery(ordersPageQueryDTO);
 
+        // 部分订单状态，需要额外返回订单菜品信息，将Orders转化为OrderVO
         List<OrderVO> orderVOList = getOrderVOList(page);
 
         return new PageResult(page.getTotal(), orderVOList);

@@ -22,7 +22,7 @@ import java.time.LocalTime;
 @RestController
 @RequestMapping("/admin/workspace")
 @Slf4j
-@Api(tags = "工作台相关接口")
+@Api(tags = "B端-工作台相关接口")
 public class WorkSpaceController {
 
     @Autowired

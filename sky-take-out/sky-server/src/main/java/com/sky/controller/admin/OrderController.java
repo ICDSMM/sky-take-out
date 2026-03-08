@@ -1,6 +1,5 @@
 package com.sky.controller.admin;
 
-import com.sky.context.BaseContext;
 import com.sky.dto.OrdersCancelDTO;
 import com.sky.dto.OrdersConfirmDTO;
 import com.sky.dto.OrdersPageQueryDTO;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController("adminOrderController")
 @RequestMapping("/admin/order")
-@Api(tags = "管理端 - 订单相关接口")
+@Api(tags = "B端-订单相关接口")
 @Slf4j
 public class OrderController {
 
@@ -27,10 +26,7 @@ public class OrderController {
 
     @ApiOperation("订单搜索")
     @GetMapping("/conditionSearch")
-    public Result<PageResult> conditionSearch(@RequestBody OrdersPageQueryDTO ordersPageQueryDTO){
-
-        Long userId = BaseContext.getCurrentId();
-        ordersPageQueryDTO.setUserId(userId);
+    public Result<PageResult> conditionSearch(OrdersPageQueryDTO ordersPageQueryDTO) {
         PageResult pageResult = orderService.conditionSearch(ordersPageQueryDTO);
         return Result.success(pageResult);
     }

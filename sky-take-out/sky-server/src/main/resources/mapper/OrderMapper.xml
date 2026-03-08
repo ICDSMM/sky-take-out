@@ -30,24 +30,12 @@
     <select id="pageQuery" resultType="Orders">
         select * from orders
         <where>
-            <if test="number != null and number!=''">
-                and number like concat('%',#{number},'%')
-            </if>
-            <if test="phone != null and phone!=''">
-                and phone like concat('%',#{phone},'%')
-            </if>
-            <if test="userId != null">
-                and user_id = #{userId}
-            </if>
-            <if test="status != null">
-                and status = #{status}
-            </if>
-            <if test="beginTime != null">
-                and order_time &gt;= #{beginTime}
-            </if>
-            <if test="endTime != null">
-                and order_time &lt;= #{endTime}
-            </if>
+            <if test="number != null and number!=''"> and number like concat('%',#{number},'%') </if>
+            <if test="phone != null and phone!=''"> and phone like concat('%',#{phone},'%') </if>
+            <if test="userId != null"> and user_id = #{userId} </if>
+            <if test="status != null"> and status = #{status} </if>
+            <if test="beginTime != null"> and order_time &gt;= #{beginTime} </if>
+            <if test="endTime != null"> and order_time &lt;= #{endTime} </if>
         </where>
         order by order_time desc
     </select>
@@ -81,7 +69,29 @@
         </where>
     </select>
 
-    <select id="countByMap" resultType="java.lang.Integer"></select>
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(id) from orders
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="beginTime != null">
+                and order_time &gt; #{begin}
+            </if>
+            <if test="endTime != null">
+                and order_time &lt; #{end}
+            </if>
+        </where>
+    </select>
+
+    <select id="salesTop10" resultType="com.sky.dto.GoodsSalesDTO">
+        select od.name, sum(od.number) sum_number from order_detail od,orders o
+        where od.order_id = o.id and o.status = 5
+        <if test="begin != null"> and o.order_time &gt; #{begin} </if>
+        <if test="end != null"> and o.order_time &lt; #{end} </if>
+        group by od.name order by sum_number desc
+        limit 0,10
+    </select>
 
 
 </mapper>
